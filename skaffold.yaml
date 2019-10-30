@@ -1,0 +1,10 @@
+apiVersion: skaffold/v1beta17
+kind: Config
+
+build:
+  artifacts:
+  - image: dev.local/skaffold-vertx
+    jib: {}
+  local:
+    push: false
+

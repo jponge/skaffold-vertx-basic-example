@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: skaffold-vertx
+spec:
+  ports:
+  - port: 8080
+    name: http
+  type: LoadBalancer
+  selector:
+    app: skaffold-vertx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skaffold-vertx
+spec:
+  selector:
+    matchLabels:
+      app: skaffold-vertx
+  template:
+    metadata:
+      labels:
+        app: skaffold-vertx
+    spec:
+      containers:
+      - name: skaffold-vertx
+        image: dev.local/skaffold-vertx
+        ports:
+          - containerPort: 8080
